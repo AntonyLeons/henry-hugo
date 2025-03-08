@@ -1,6 +1,260 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility post-content {
+  & hr {
+    @apply border border-henryt-lighter mt-6;
+  }
+
+  & h1 {
+    @apply font-title font-semibold text-henryc;
+  }
+
+  & h2 {
+    @apply font-title font-semibold text-henryc;
+  }
+
+  & h3 {
+    @apply font-title font-semibold text-henryc;
+  }
+
+  & h4 {
+    @apply font-title font-semibold text-henryc;
+  }
+
+  & h1 {
+    @apply text-2xl;
+  }
+
+  & h1 code {
+    @apply text-2xl;
+  }
+
+  & h2 {
+    @apply text-xl;
+  }
+
+  & h2 code {
+    @apply text-xl;
+  }
+
+  & h3 {
+    @apply text-lg;
+  }
+
+  & h3 code {
+    @apply text-lg;
+  }
+
+  & h4 {
+    @apply font-bold;
+  }
+
+  & ol li {
+    @apply ms-6 list-decimal;
+  }
+
+  & ul li {
+    @apply ms-6 list-disc;
+  }
+
+  /* code blocks */
+  & pre {
+    @apply p-4 border border-black rounded-md overflow-auto;
+  }
+  & .highlight pre code {
+    @apply text-xs;
+  }
+
+  /* inline code */
+  & code {
+    @apply text-henryc-lightest text-sm md:text-base;
+  }
+
+  & > *:not(figure.full-bleed) {
+    @apply w-3/4 max-w-3xl min-w-[333px];
+  }
+
+  & figure.full-bleed {
+    @apply w-full border-l-0 border-r-0;
+  }
+
+  & figure figcaption {
+    @apply text-center no-underline font-bold text-xs pt-1;
+  }
+
+  & *:not(figure.full-bleed) img {
+    @apply border-4 border-black rounded-md;
+  }
+
+  & figure.full-bleed img {
+    width: 100%;
+    @apply border-t-4 border-b-4 border-black;
+  }
+
+  & figure img.borderless {
+    @apply border-0;
+  }
+
+  & .callout:not(figure) {
+    @apply border-4 border-henryc p-4 space-y-2;
+  }
+
+  & blockquote {
+    @apply md:w-[60%]! p-4
+          bg-henryb-dark border-l-4 border-henryc-lighter
+            italic
+            text-sm md:text-base;
+  }
+
+  & .footnote-ref {
+    @apply font-bold no-underline text-henryt-light hover:text-henryc ps-0.5;
+  }
+
+  & .footnote-backref {
+    @apply font-bold text-white no-underline hover:text-henryc;
+  }
+}
+
+@utility highlight {
+  .post-content & pre code {
+    @apply text-xs;
+  }
+}
+
+@utility full-bleed {
+  .post-content &figure {
+    @apply w-full border-l-0 border-r-0;
+  }
+
+  .post-content &figure img {
+    width: 100%;
+    @apply border-t-4 border-b-4 border-black;
+  }
+}
+
+@utility borderless {
+  .post-content figure &img {
+    @apply border-0;
+  }
+}
+
+@utility callout {
+  .post-content &:not(figure) {
+    @apply border-4 border-henryc p-4 space-y-2;
+  }
+}
+
+@utility footnote-ref {
+  .post-content & {
+    @apply font-bold no-underline text-henryt-light hover:text-henryc ps-0.5;
+  }
+}
+
+@utility footnote-backref {
+  .post-content & {
+    @apply font-bold text-white no-underline hover:text-henryc;
+  }
+}
+
+@utility footnotes {
+  & ol {
+    @apply list-decimal text-henryt-light mt-2 py-2 pe-1 ps-6;
+  }
+
+  & ol a {
+    @apply decoration-henryt-lighter;
+  }
+}
+
+@utility pill-henryc2 {
+  @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc2-dark text-henryc2-dark hover:text-white uppercase no-underline font-sans text-xs;
+  font-size: 10px;
+}
+
+@utility pill-henryc2-solid {
+  @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-black uppercase no-underline font-sans font-bold;
+  font-size: 10px;
+}
+
+@utility pill-henryc {
+  @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc text-henryc hover:text-black uppercase no-underline font-sans;
+  font-size: 10px;
+}
+
+@utility pill-henryc-solid {
+  @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
+  font-size: 10px;
+}
+
+@utility pill-slate {
+  @apply w-fit border-2 border-henryt-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryt-light text-henryt-light hover:text-black uppercase no-underline font-sans;
+  font-size: 10px;
+}
+
+@utility pagination {
+  /* Pagination styles */
+  @apply flex flex-wrap justify-center items-center space-x-2 my-8;
+}
+
+@utility page-item {
+  @apply inline-block;
+
+  &:nth-last-child(-n + 4):nth-last-child(n + 3) {
+    @apply hidden sm:block;
+  }
+
+  &.active .page-link {
+    @apply bg-henryc text-black font-bold;
+  }
+
+  &.disabled .page-link {
+    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
+  }
+}
+
+@utility page-link {
+  @apply px-3 py-2 border border-henryt-lighter rounded-md text-henryt hover:bg-henryb-dark hover:text-henryc transition-colors duration-200 no-underline;
+
+  .page-item.active & {
+    @apply bg-henryc text-black font-bold;
+  }
+
+  .page-item.disabled & {
+    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
+  }
+}
+
+@utility active {
+  &.page-item .page-link {
+    @apply bg-henryc text-black font-bold;
+  }
+}
+
+@utility disabled {
+  &.page-item .page-link {
+    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
+  }
+}
 
 @layer base {
   article {
@@ -22,169 +276,5 @@
 
   article a {
     @apply font-medium text-henryc no-underline;
-  }
-}
-
-@layer components {
-  .post-content hr {
-    @apply border border-henryt-lighter mt-6;
-  }
-
-  .post-content h1,
-  .post-content h2,
-  .post-content h3,
-  .post-content h4 {
-    @apply font-title font-semibold text-henryc;
-  }
-
-  .post-content h1 {
-    @apply text-2xl;
-  }
-
-  .post-content h1 code {
-    @apply text-2xl;
-  }
-
-  .post-content h2 {
-    @apply text-xl;
-  }
-
-  .post-content h2 code {
-    @apply text-xl;
-  }
-
-  .post-content h3 {
-    @apply text-lg;
-  }
-
-  .post-content h3 code {
-    @apply text-lg;
-  }
-
-  .post-content h4 {
-    @apply font-bold;
-  }
-
-  .post-content ol li {
-    @apply ms-6 list-decimal;
-  }
-
-  .post-content ul li {
-    @apply ms-6 list-disc;
-  }
-
-  /* code blocks */
-  .post-content pre {
-    @apply p-4 border border-black rounded-md overflow-auto;
-  }
-  .post-content .highlight pre code {
-    @apply text-xs;
-  }
-
-  /* inline code */
-  .post-content code {
-    @apply text-henryc-lightest text-sm md:text-base;
-  }
-
-  .post-content > *:not(figure.full-bleed) {
-    @apply w-3/4 max-w-3xl min-w-[333px];
-  }
-
-  .post-content figure.full-bleed {
-    @apply w-full border-l-0 border-r-0;
-  }
-
-  .post-content figure figcaption {
-    @apply text-center no-underline font-bold text-xs pt-1;
-  }
-
-  .post-content *:not(figure.full-bleed) img {
-    @apply border-4 border-black rounded-md;
-  }
-
-  .post-content figure.full-bleed img {
-    width: 100%;
-    @apply border-t-4 border-b-4 border-black;
-  }
-
-  .post-content figure img.borderless {
-    @apply border-0;
-  }
-
-  .post-content .callout:not(figure) {
-    @apply border-4 border-henryc p-4 space-y-2;
-  }
-
-  .post-content blockquote {
-    @apply  md:!w-[60%] p-4
-          bg-henryb-dark border-l-4 border-henryc-lighter
-            italic
-            text-sm md:text-base;
-  }
-
-  .post-content .footnote-ref {
-    @apply font-bold no-underline text-henryt-light hover:text-henryc ps-0.5;
-  }
-
-  .post-content .footnote-backref {
-    @apply font-bold text-white no-underline hover:text-henryc;
-  }
-
-  .footnotes ol {
-    @apply list-decimal text-henryt-light mt-2 py-2 pe-1 ps-6;
-  }
-
-  .footnotes ol a {
-    @apply decoration-henryt-lighter;
-  }
-
-  .pill-henryc2 {
-    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc2-dark text-henryc2-dark hover:text-white uppercase no-underline font-sans text-xs;
-    font-size: 10px;
-  }
-
-  .pill-henryc2-solid {
-    @apply w-fit border-2 border-henryc2-dark rounded-lg px-1.5 py-0.5 bg-henryc2-dark text-black uppercase no-underline font-sans font-bold;
-    font-size: 10px;
-  }
-
-  .pill-henryc {
-    @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryc text-henryc hover:text-black uppercase no-underline font-sans;
-    font-size: 10px;
-  }
-
-  .pill-henryc-solid {
-    @apply w-fit border-2 border-henryc rounded-lg px-1.5 py-0.5 bg-henryc hover:bg-transparent text-black uppercase no-underline font-sans font-bold;
-    font-size: 10px;
-  }
-
-  .pill-slate {
-    @apply w-fit border-2 border-henryt-light rounded-lg px-1.5 py-0.5 bg-transparent hover:bg-henryt-light text-henryt-light hover:text-black uppercase no-underline font-sans;
-    font-size: 10px;
-  }
-
-  /* Pagination styles */
-  .pagination {
-    @apply flex flex-wrap justify-center items-center space-x-2 my-8;
-  }
-
-  .page-item {
-    @apply inline-block;
-  }
-
-  .page-item:nth-last-child(-n + 4):nth-last-child(n + 3) {
-    @apply hidden sm:block;
-  }
-
-  .page-link {
-    @apply px-3 py-2 border border-henryt-lighter rounded-md text-henryt hover:bg-henryb-dark hover:text-henryc transition-colors duration-200 no-underline;
-  }
-
-  .page-item.active .page-link {
-    @apply bg-henryc text-black font-bold;
-  }
-
-  .page-item.disabled .page-link {
-    @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:text-henryt;
   }
 }
